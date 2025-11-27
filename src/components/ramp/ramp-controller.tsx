@@ -33,22 +33,22 @@ const statusConfig: Record<
   }
 > = {
   OPEN: {
-    label: 'Open',
+    label: 'Abierta',
     icon: <ChevronsUp className="h-4 w-4" />,
     variant: 'secondary',
   },
   CLOSED: {
-    label: 'Closed',
+    label: 'Cerrada',
     icon: <ChevronsDown className="h-4 w-4" />,
     variant: 'secondary',
   },
   AUTO: {
-    label: 'Auto Mode',
+    label: 'Modo Automático',
     icon: <Bot className="h-4 w-4" />,
     variant: 'default',
   },
   UNKNOWN: {
-    label: 'Unknown',
+    label: 'Desconocido',
     icon: <AlertTriangle className="h-4 w-4" />,
     variant: 'destructive',
   },
@@ -76,16 +76,16 @@ export default function RampController() {
       } else if (response) {
         setStatus('ERROR');
         toast({
-          title: 'Error from Ramp',
-          description: `Received unexpected response: ${response}`,
+          title: 'Error de la Rampa',
+          description: `Respuesta inesperada recibida: ${response}`,
           variant: 'destructive',
         });
       } else {
         setStatus('ERROR');
         toast({
-          title: 'Communication Error',
+          title: 'Error de Comunicación',
           description:
-            'Could not connect to the ramp. Please check the connection and try again.',
+            'No se pudo conectar a la rampa. Por favor, comprueba la conexión e inténtalo de nuevo.',
           variant: 'destructive',
         });
       }
@@ -97,18 +97,18 @@ export default function RampController() {
   return (
     <Card className="shadow-lg">
       <CardHeader>
-        <CardTitle>Ramp Controls</CardTitle>
+        <CardTitle>Controles de la Rampa</CardTitle>
         <CardDescription>
-          Manage your smart ramp's operation mode.
+          Gestiona el modo de operación de tu rampa inteligente.
         </CardDescription>
       </CardHeader>
       <CardContent className="space-y-6">
         <div className="flex items-center justify-between rounded-lg border bg-background p-4">
-          <h3 className="text-lg font-medium">Current Status</h3>
+          <h3 className="text-lg font-medium">Estado Actual</h3>
           {isPending ? (
             <div className="flex items-center gap-2 text-muted-foreground">
               <Loader2 className="h-4 w-4 animate-spin" />
-              <span>Updating...</span>
+              <span>Actualizando...</span>
             </div>
           ) : (
             <Badge
@@ -123,7 +123,7 @@ export default function RampController() {
 
         <div className="space-y-4 pt-2">
           <h3 className="text-md font-medium text-muted-foreground">
-            Mode Selection
+            Selección de Modo
           </h3>
           <Button
             className="w-full"
@@ -132,7 +132,7 @@ export default function RampController() {
             variant={status === 'AUTO' ? 'default' : 'outline'}
           >
             <Bot className="mr-2 h-4 w-4" />
-            Enable Auto Mode
+            Activar Modo Automático
           </Button>
         </div>
 
@@ -140,7 +140,7 @@ export default function RampController() {
 
         <div className="space-y-4">
           <h3 className="text-md font-medium text-muted-foreground">
-            Manual Control
+            Control Manual
           </h3>
           <div className="grid grid-cols-2 gap-4">
             <Button
@@ -151,7 +151,7 @@ export default function RampController() {
               }
             >
               <ChevronsUp className="mr-2 h-4 w-4" />
-              Open Ramp
+              Abrir Rampa
             </Button>
             <Button
               onClick={() => handleCommand(closeRamp)}
@@ -163,12 +163,12 @@ export default function RampController() {
               }
             >
               <ChevronsDown className="mr-2 h-4 w-4" />
-              Close Ramp
+              Cerrar Rampa
             </Button>
           </div>
           {status === 'AUTO' && (
             <p className="text-center text-xs text-muted-foreground">
-              Manual controls are disabled in Auto Mode.
+              Los controles manuales están desactivados en Modo Automático.
             </p>
           )}
         </div>
